@@ -1,0 +1,31 @@
+﻿@model List<ErrorAPI.Models.Error>
+@{
+    ViewBag.Title = "Errors index";
+}
+
+<div class="container">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Error Id</th>
+                <th scope="col">Program Name</th>
+                <th scope="col">Exception Name</th>
+                <th scope="col">Exception Message</th>
+                <th scope="col">Occurence Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var error in Model)
+            {
+            <tr>
+                <th scope="row"><a href="@Url.Action("Info", new {id = error.Id})">@error.Id</a></th>
+                <th>@error.ProgramName</th>
+                <td>@error.ExceptionName</td>
+                <td>@error.ExceptionMessage</td>
+                <td>@error.OccurenceCount</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

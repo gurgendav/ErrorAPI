@@ -1,0 +1,120 @@
+﻿@model ErrorAPI.Models.Error
+
+@{
+    ViewBag.Title = "Error details";
+}
+
+<h2>Error details</h2>
+
+<div>
+    <h3>An unhandled exception occurred in '@Model.ProgramName':</h3>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <h5>Exception Details</h5>
+        <dt>
+            Exception Name
+        </dt>
+        <dd>
+            @Model.ExceptionName
+        </dd>
+        <dt>
+            Exception Type
+        </dt>
+        <dd>
+            @Model.ExceptionType
+        </dd>
+        <dt>
+            Exception Message
+        </dt>
+        <dd>
+            @Model.ExceptionMessage
+        </dd>
+        <dt>
+            Stack Trace
+        </dt>
+        <dd>
+            @Model.StackTrace
+        </dd>
+
+    </dl>
+
+    <hr/>
+    <h4>Details (@Model.OccurenceCount)</h4>
+    <hr/>
+
+    @foreach (var detail in Model.ErrorDetails)
+    {
+        <h5>Environment Details</h5>
+        <dl class="dl-horizontal">
+            <dt>
+                Version
+            </dt>
+            <dd>
+                @detail.Version
+            </dd>
+            <dt>
+                Machine Name
+            </dt>
+            <dd>
+                @detail.MachineName
+            </dd>
+            <dt>
+                Machine OS Version
+            </dt>
+            <dd>
+                @detail.MachineOsVersion
+            </dd>
+            <dt>
+                Used Memory
+            </dt>
+            <dd>
+                @detail.UsedMemoryMb MB
+            </dd>
+            <dt>
+                Used Memory
+            </dt>
+            <dd>
+                @detail.UsedMemoryMb MB
+            </dd>
+            <dt>
+                User Name
+            </dt>
+            <dd>
+                @detail.UserName
+            </dd>
+            <dt>
+                Date
+            </dt>
+            <dd>
+                @detail.DateUtc.ToString("R")
+            </dd>
+        </dl>
+
+        <h5>Exception Handling Details</h5>
+        <dl class="dl-horizontal">
+            <dt>
+                Can continue execution
+            </dt>
+            <dd>
+                @detail.CanUserContinue
+            </dd>
+            <dt>
+                User continues execution
+            </dt>
+            <dd>
+                @detail.DidUserContinue
+            </dd>
+        </dl>
+
+        <h5>Faulting Context Details</h5>
+        <div>
+            @detail.FaultingContextDetails
+        </div>
+
+        <hr/>
+    }
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
